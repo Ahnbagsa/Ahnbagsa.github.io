@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>안박사의 지식 저장소</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&family=Nanum+Gothic:wght@400;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* [컬러 팔레트 & 기본 설정] */
+        :root {
+            --bg-cream: #fef9f3;
+            --pastel-pink: #ffb7b2;
+            --light-pink: #ffedef;
+            --pastel-mint: #e2f0cb;
+            --text-dark: #555555;
+            --text-gray: #888888;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Nanum Gothic', sans-serif;
+            background-color: var(--bg-cream);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, .logo {
+            font-family: 'Gaegu', cursive;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* [네비게이션 바 (상단 메뉴)] */
+        header {
+            background-color: rgba(254, 249, 243, 0.9);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+            backdrop-filter: blur(5px);
+        }
+
+        .nav-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 32px;
+            color: #ff8b94;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 18px;
+            font-weight: 700;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--pastel-pink);
+        }
+
+        /* [메인 히어로 섹션] */
+        .hero {
+            padding: 150px 20px 80px;
+            text-align: center;
+            background: radial-gradient(circle at 20% 30%, var(--light-pink) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 70%, var(--pastel-mint) 0%, transparent 50%);
+        }
+
+        .hero h1 {
+            font-size: 60px;
+            color: #ff8b94;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 20px;
+            color: var(--text-gray);
+            margin-bottom: 0;
+        }
+
+        /* [네이버 밴드 연동 배너] */
+        .band-banner {
+            max-width: 800px;
+            margin: 0 auto 60px;
+            background-color: #fff;
+            border: 3px solid var(--pastel-mint);
+            border-radius: 30px;
+            padding: 30px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 10px 30px rgba(226, 240, 203, 0.4);
+            transform: translateY(0);
+            transition: transform 0.3s;
+        }
+
+        .band-banner:hover {
+            transform: translateY(-5px);
+        }
+
+        .band-info h2 {
+            font-size: 30px;
+            color: #4caf50;
+            margin-bottom: 5px;
+        }
+
+        .band-info p {
+            font-size: 16px;
+        }
+
+        .band-btn {
+            background-color: #4caf50;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
+            transition: background-color 0.3s;
+            white-space: nowrap;
+        }
+
+        .band-btn:hover {
+            background-color: #388e3c;
+        }
+
+        /* [자료실 (리스트형 링크 모음) 섹션] */
+        .library-section {
+            max-width: 800px;
+            margin: 0 auto 100px;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            color: #ff8b94;
+            margin-bottom: 30px;
+        }
+
+        .link-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .link-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #fff;
+            padding: 20px 25px;
+            border-radius: 20px;
+            border: 2px solid var(--light-pink);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+        }
+
+        .link-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 183, 178, 0.3);
+            border-color: var(--pastel-pink);
+            background-color: #fffafb;
+        }
+
+        .link-title {
+            font-size: 18px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: var(--text-dark);
+        }
+
+        .link-title i {
+            color: var(--pastel-pink);
+            font-size: 22px;
+            width: 30px;
+            text-align: center;
+        }
+
+        .link-item .fa-chevron-right {
+            color: #ddd;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+
+        .link-item:hover .fa-chevron-right {
+            color: var(--pastel-pink);
+            transform: translateX(3px);
+        }
+
+        /* [푸터] */
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            background-color: #fff;
+            color: var(--text-gray);
+            border-top: 1px solid var(--light-pink);
+        }
+
+        /* [모바일 반응형] */
+        @media (max-width: 768px) {
+            .band-banner {
+                flex-direction: column;
+                text-align: center;
+                gap: 20px;
+            }
+            .hero h1 { font-size: 40px; }
+            .nav-links { display: none; }
+            .link-title { font-size: 16px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fa-solid fa-seedling"></i> 안박사 홈
+            </div>
+            <ul class="nav-links">
+                <li><a href="#hero">소개</a></li>
+                <li><a href="#library">자료실</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <section id="hero" class="hero">
+        <h1>안녕하세요! 안박사입니다 ✿</h1>
+        <p>방문해 주셔서 감사합니다. 아래 링크를 통해 자료를 확인해 주세요!</p>
+    </section>
+
+    <section class="band-banner">
+        <div class="band-info">
+            <h2><i class="fa-solid fa-users"></i> 안박사 네이버 밴드</h2>
+            <p>더 많은 이야기와 실시간 자료 업데이트는 밴드에서!</p>
+        </div>
+        <a href="https://band.us/band/75227357" target="_blank" class="band-btn">
+            밴드 바로가기 <i class="fa-solid fa-arrow-right"></i>
+        </a>
+    </section>
+
+    <section id="library" class="library-section">
+        <h2 class="section-title">📂 자료 링크 모음</h2>
+        
+        <div class="link-list">
+            <a href="#" target="_blank" class="link-item">
+                <span class="link-title">
+                    <i class="fa-brands fa-google-drive"></i>
+                    [구글 드라이브] 2026년 공용 학습 자료 모음
+                </span>
+                <i class="fa-solid fa-chevron-right"></i>
+            </a>
+
+            <a href="#" target="_blank" class="link-item">
+                <span class="link-title">
+                    <i class="fa-solid fa-file-pdf"></i>
+                    핵심 요약 노트 다운로드 (PDF)
+                </span>
+                <i class="fa-solid fa-chevron-right"></i>
+            </a>
+
+            <a href="#" target="_blank" class="link-item">
+                <span class="link-title">
+                    <i class="fa-solid fa-note-sticky"></i>
+                    프로젝트 진행 상황 게시판 (Notion)
+                </span>
+                <i class="fa-solid fa-chevron-right"></i>
+            </a>
+
+            <a href="https://band.us/band/75227357/post" target="_blank" class="link-item">
+                <span class="link-title">
+                    <i class="fa-solid fa-comment-dots"></i>
+                    최근 밴드 공지사항 및 Q&A 확인하기
+                </span>
+                <i class="fa-solid fa-chevron-right"></i>
+            </a>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 안박사의 지식 저장소. All rights reserved.</p>
+        <p style="font-size: 14px; margin-top: 10px;">Created with AI Vibe Coding</p>
+    </footer>
+
+</body>
+</html>
